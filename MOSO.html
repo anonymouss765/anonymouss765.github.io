@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>MOSO: Decomposing MOtion, Scene and Object for Video Prediction</title>
+  </head>
+  <body>
+    <h1 style="font-size:50px;text-align:center;height:150px;padding:80px 0px 0px 0px;text-shadow: 1px 1px 0.4px black;"> MOSO: Decomposing MOtion, Scene and Object for Video Prediction </h1>
+    
+    <p style="text-align:justify;weight:600px;height:200px;background-color:#E7E6E6;padding: 20px 250px 0px 250px;"> <strong>Abstract:</strong> Motion, scene and object are three primary visual components of a video. In particular, objects represent the foreground, scenes represent the background, and motion traces their dynamics. Based on this insight, we propose a  two-stage MOtion, Scene and Object decomposition framework (MOSO) for video prediction, consisting of MOSO-VQVAE and MOSO-Transformer. In the first stage, MOSO-VQVAE decomposes a previous video clip into the motion, scene and object components, and represents them as distinct groups of discrete tokens. Then, in the second stage, MOSO-Transformer predicts the object and scene tokens of the subsequent video clip based on the previous tokens and adds dynamic motion at the token level to the generated object and scene tokens. Our framework can be easily extended to unconditional video generation and video frame interpolation tasks. Experimental results demonstrate that our method achieves new state-of-the-art performance on five challenging benchmarks for video prediction and unconditional video generation: BAIR, RoboNet, KTH, KITTI and UCF101. In addition, MOSO can produce realistic videos by combining objects and scenes from different videos.</p>
+    
+    <p style="text-align:center;height:50px;padding: 20px 250px 0px 250px;"> Videos presented on this page are encoded according to H.264 format, which can be displayed through Google Chrome. </p>
+    
+<!--     video prediction samples -->
+    <p style="text-align:center;font-size:20px;"> <strong>Video Prediction</strong> on BAIR 64x64 </p>
+    <video width="1280" height="160" style="padding-left:300px;" controls>
+      <source src="materies_for_moso/BAIR64x_1to15_n10.mp4" type="video/mp4">
+<!--       <source src="materies_for_moso/RoboNet64x_2to10_n10.mp4" type="video/mp4"> -->
+    </video>
+    
+    <p style="text-align:center;font-size:20px;"> <strong>Video Prediction</strong> on RoboNet 64x64 </p>
+    <video width="1280" height="160" style="padding-left:300px;" controls>
+      <source src="materies_for_moso/RoboNet64x_2to10_n10.mp4" type="video/mp4">
+    </video>
+    
+    <p style="text-align:center;font-size:20px;"> <strong>Video Prediction</strong> on RoboNet 256x256 </p>
+    <video width="1280" height="160" style="padding-left:300px;" controls>
+      <source src="materies_for_moso/RoboNet256x_2to10_n10.mp4" type="video/mp4">
+    </video>
+    
+    <p style="text-align:center;font-size:20px;"> <strong>Video Prediction</strong> on KTH 64x64 </p>
+    <video width="1280" height="160" style="padding-left:300px;" controls>
+      <source src="materies_for_moso/kth64x_10to40_n10.mp4" type="video/mp4">
+    </video>
+    
+    <p style="text-align:center;font-size:20px;"> <strong>Video Prediction</strong> on KTH 128x128 </p>
+    <video width="1280" height="160" style="padding-left:300px;" controls>
+      <source src="materies_for_moso/kth128x_10to20_n10.mp4" type="video/mp4">
+    </video>
+    
+    <p style="text-align:center;font-size:20px;"> <strong>Video Prediction</strong> on KITTI 64x64 </p>
+    <video width="1280" height="160" style="padding-left:300px;" controls>
+      <source src="materies_for_moso/KITTI64x_5to25_n10.mp4" type="video/mp4">
+    </video>
+    
+    <p style="text-align:center;font-size:20px;"> <strong>Video Prediction</strong> on KITTI 256x256 </p>
+    <video width="1280" height="160" style="padding-left:300px;" controls>
+      <source src="materies_for_moso/KITTI256x_5to25_n10.mp4" type="video/mp4">
+    </video>
+    
+    <!-- <p style="text-align:center;font-size:20px;"> <strong>Decomposed scenes</strong> on UCF101 256x256 </p> 
+    
+    <p style="text-align:center;font-size:20px;"> <strong>Decomposed objects</strong> on UCF101 256x256 </p> -->
+    
+  </body>
+</html>
