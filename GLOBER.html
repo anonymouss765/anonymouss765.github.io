@@ -3,51 +3,38 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>COMUNI: Decomposing Common and Unique Video Signals for Diffusion-based Video Generation</title>
+    <title>GLOBER: Coherent Non-autoregressive Video Generation via GLOBal Guided Video DecodER</title>
   </head>
   <body>
-    <h1 style="font-size:50px;text-align:center;height:150px;padding:80px 0px 0px 0px;text-shadow: 1px 1px 0.4px black;"> COMUNI: Decomposing Common and Unique Video Signals for Diffusion-based Video Generation </h1>
+    <h1 style="font-size:50px;text-align:center;height:150px;padding:80px 0px 0px 0px;text-shadow: 1px 1px 0.4px black;"> GLOBER: Coherent Non-autoregressive Video Generation via GLOBal Guided Video DecodER </h1>
     
-    <p style="text-align:justify;weight:600px;height:200px;background-color:#E7E6E6;padding: 20px 250px 0px 250px;"> <strong>Abstract:</strong> Since videos record objects moving coherently, adjacent video frames have commonness (similar object appearances) and uniqueness (slightly changed postures). Based on this insight, we propose a novel two-stage framework for diffusion-based video generation, i.e. COMUNI, which decomposes COMmon and UNIque video signals to eliminate redundancy. In the first stage, CU-VAE is proposed to decompose video signals and encode them to latent features. For self-supervisedly training, a cascading merge module is adopted to recompose video signals for video decoding. Then in the second stage, CU-LDM is proposed to model latent features for video generation. In particular, two specific diffusion streams are adopted to model common and unique latent features respectively, and additional joint modules are interpolated for joint modeling. For content consistency and motion coherence of generated videos, a novel embedding method is proposed to incorporate spatial and temporal absolute position information into joint modules. Extensive experiments demonstrate the superiority of our proposed method and the necessity of decomposing common and unique video signals for video generation. </p>
+    <p style="text-align:justify;weight:600px;height:200px;background-color:#E7E6E6;padding: 20px 250px 0px 250px;"> <strong>Abstract:</strong> Video generation necessitates both global coherence and local realism. This work presents a novel non-autoregressive method GLOBER, which first generates global features to obtain comprehensive global guidance and then synthesizes video frames based on the global features to generate coherent videos. Specifically, we propose a video auto-encoder, where a video encoder encodes videos into global features, and a video decoder, built on a diffusion model, decodes the global features and synthesizes video frames in a non-autoregressive manner. To achieve maximum flexibility, our video decoder perceives temporal information through normalized frame indexes, which enables it to synthesize arbitrary sub video clips with predetermined starting and ending frame indexes. Moreover, a novel adversarial loss is introduced to improve the global coherence and local realism between the synthesized video frames. Finally, we employ a diffusion-based video generator to fit the global features outputted by the video encoder for video generation. Extensive experimental results demonstrate the effectiveness and efficiency of our proposed method, and new state-of-the-art results have been achieved on multiple benchmarks. </p>
     
     <p style="text-align:center;height:50px;padding: 20px 250px 0px 250px;"> Videos presented on this page are encoded according to H.264 format, which can be displayed through Google Chrome. </p>
     
     <!-- FFS 256x -->
-    <p style="text-align:center;font-size:24px;"> <strong>FaceForensics 256x256</strong> </p>
-    <video width="1280" height="544" style="padding-left:300px;" controls>
-      <source src="materies_for_comuni/ndldm_ffs_256x.mp4" type="video/mp4">
-    </video>
-    <p style="text-align:center;font-size:16px;"> ND-LDM </p>
-    
+    <p style="text-align:center;font-size:24px;"> <strong>SkyTimelapse 256x256</strong> </p>
+    <p style="text-align:center;font-size:20px;"> <strong>16-frame Video Generation</strong> </p>
     <video width="1280" height="544" style="padding-left:300px;" controls>
       <source src="materies_for_comuni/culdm_ffs_256x.mp4" type="video/mp4">
     </video>
-    <p style="text-align:center;font-size:16px;"> CU-LDM </p>
     
-    
-    <!-- UCF 128x -->
-    <p style="text-align:center;font-size:24px;"> <strong>UCF101 128x128</strong> </p>
-    <video width="1280" height="544" style="padding-left:300px;" controls>
-      <source src="materies_for_comuni/ndldm_ucf_128x.mp4" type="video/mp4">
-    </video>
-    <p style="text-align:center;font-size:16px;"> ND-LDM </p>
-    
-    <video width="1280" height="544" style="padding-left:300px;" controls>
-      <source src="materies_for_comuni/culdm_ucf_128x.mp4" type="video/mp4">
-    </video>
-    <p style="text-align:center;font-size:16px;"> CU-LDM </p>
+    <p style="text-align:center;font-size:20px;"> <strong>128-frame Video Generation</strong> </p>
     
     <!-- UCF 256x -->
     <p style="text-align:center;font-size:24px;"> <strong>UCF101 256x256</strong> </p>
+    <p style="text-align:center;font-size:20px;"> <strong>16-frame Video Generation</strong> </p>
+    <video width="1280" height="544" style="padding-left:300px;" controls>
+      <source src="materies_for_comuni/ndldm_ucf_128x.mp4" type="video/mp4">
+    </video>
+    
+    <p style="text-align:center;font-size:20px;"> <strong>128-frame Video Generation</strong> </p>
+    
+    <!-- TaiChi 128x -->
+    <p style="text-align:center;font-size:24px;"> <strong>TaiChi-HD 128x128</strong> </p>
     <video width="1280" height="544" style="padding-left:300px;" controls>
       <source src="materies_for_comuni/ndldm_ucf_256x.mp4" type="video/mp4">
     </video>
-    <p style="text-align:center;font-size:16px;"> ND-LDM </p>
-    
-    <video width="1280" height="544" style="padding-left:300px;" controls>
-      <source src="materies_for_comuni/culdm_ucf_256x.mp4" type="video/mp4">
-    </video>
-    <p style="text-align:center;font-size:16px;"> CU-LDM </p>
     
   </body>
 </html>
