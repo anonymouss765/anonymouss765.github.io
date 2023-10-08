@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>GLOBER: Coherent Non-autoregressive Video Generation via GLOBal Guided Video DecodER</title>
+  </head>
+  <body>
+    <h1 style="font-size:50px;text-align:center;height:150px;padding:80px 0px 0px 0px;text-shadow: 1px 1px 0.4px black;"> GLOBER: Coherent Non-autoregressive Video Generation via GLOBal Guided Video DecodER </h1>
+    
+    <p style="text-align:justify;weight:600px;height:200px;background-color:#E7E6E6;padding: 20px 250px 0px 250px;"> <strong>Abstract:</strong> Video generation necessitates both global coherence and local realism. This work presents a novel non-autoregressive method GLOBER, which first generates global features to obtain comprehensive global guidance and then synthesizes video frames based on the global features to generate coherent videos. Specifically, we propose a video auto-encoder, where a video encoder encodes videos into global features, and a video decoder, built on a diffusion model, decodes the global features and synthesizes video frames in a non-autoregressive manner. To achieve maximum flexibility, our video decoder perceives temporal information through normalized frame indexes, which enables it to synthesize arbitrary sub video clips with predetermined starting and ending frame indexes. Moreover, a novel adversarial loss is introduced to improve the global coherence and local realism between the synthesized video frames. Finally, we employ a diffusion-based video generator to fit the global features outputted by the video encoder for video generation. Extensive experimental results demonstrate the effectiveness and efficiency of our proposed method, and new state-of-the-art results have been achieved on multiple benchmarks. </p>
+    
+    <p style="text-align:center;height:50px;padding: 20px 250px 0px 250px;"> Videos presented on this page are encoded according to H.264 format, which can be displayed through Google Chrome. </p>
+    
+    <!-- FFS 256x -->
+    <p style="text-align:center;font-size:24px;"> <strong>SkyTimelapse 256x256</strong> </p>
+    <p style="text-align:center;font-size:20px;"> <strong>16-frame Video Generation</strong> </p>
+    <video width="1024" height="512" style="padding-left:450px;" controls>
+      <source src="materies_for_glober/sky_256x_16f.mp4" type="video/mp4">
+    </video>
+    
+    <p style="text-align:center;font-size:20px;"> <strong>128-frame Video Generation</strong> </p>
+    <video width="1024" height="512" style="padding-left:450px;" controls>
+      <source src="materies_for_glober/sky_256x_128f.mp4" type="video/mp4">
+    </video>
+    
+    <!-- UCF 256x -->
+    <p style="text-align:center;font-size:24px;"> <strong>UCF101 256x256 w/o c</strong> </p>
+    <p style="text-align:center;font-size:20px;"> <strong>16-frame Video Generation</strong> </p>
+    <video width="1024" height="512" style="padding-left:450px;" controls>
+      <source src="materies_for_glober/ucf_woc_256x_16f.mp4" type="video/mp4">
+    </video>
+    
+    <p style="text-align:center;font-size:20px;"> <strong>128-frame Video Generation</strong> </p>
+    <video width="1024" height="512" style="padding-left:450px;" controls>
+      <source src="materies_for_glober/ucf_woc_256x_128f.mp4" type="video/mp4">
+    </video>
+    <!-- TaiChi 128x -->
+    <p style="text-align:center;font-size:24px;"> <strong>TaiChi-HD 128x128</strong> </p>
+    <p style="text-align:center;font-size:20px;"> <strong>16-frame Video Generation</strong> </p>
+    <video width="1024" height="512" style="padding-left:450px;" controls>
+      <source src="materies_for_glober/ucf_woc_256x_16f.mp4" type="video/mp4">
+    </video>
+    
+  </body>
+</html>
