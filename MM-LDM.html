@@ -8,13 +8,57 @@
   <body>
     <h1 style="font-size:50px;text-align:center;height:150px;padding:80px 0px 0px 0px;text-shadow: 1px 1px 0.4px black;"> MM-LDM: Multi-Modal Latent Diffusion Model for Sounding Video Generation </h1>
     
-    <p style="text-align:justify;weight:600px;height:200px;background-color:#E7E6E6;padding: 20px 250px 0px 250px;"> <strong>Abstract:</strong> Sounding video generation (SVG) is a challenging audio-video joint generation task that requires both single-modal realism and cross-modal consistency. Previous diffusion-based methods tackled SVG within the original signal space, resulting in a huge computation burden. In this paper, we introduce a novel multi-modal latent diffusion model (MM-LDM), which establishes a perceptual latent space that is perceptually equivalent to the original audio-video signal space but drastically reduces computational complexity. We unify the representation of audio and video signals and construct a shared high-level semantic feature space to bridge the information gap between audio and video modalities. Furthermore, we present a novel cross-modal sampling guidance that extends our generative models to audio-to-video and video-to-audio conditional generation tasks. We obtain the new state-of-the-art results with significant quality and efficiency gains. In particular, our method achieves an overall improvement in all evaluation metrics and a faster training and sampling speed. </p>
+    <p style="text-align:justify;weight:600px;height:200px;background-color:#E7E6E6;padding: 20px 250px 0px 250px;"> <strong>Abstract:</strong> Sounding Video Generation (SVG) is a challenging multi-modal generation task since it requires synthesizing realistic high-dimensional video and audio signals with limited computational resources, and bridging the gap between data representation and conveyed messages to obtain content consistency. In this paper, we introduce a novel multi-modal latent diffusion model (MM-LDM) to solve this task. We first unify the representation of audio and video signals by converting them into a single or a couple of images. Then, we introduce a hierarchical multi-modal autoencoder that constructs a low-level perceptual latent space for each modality and a shared high-level semantic feature space. The former space is perceptually equivalent to the raw signal space of each modality but drastically reduces the computational complexity. The latter space is derived from the perceptual spaces and provides more insightful cross-modal guidance to bridge the information gap between modalities. In addition, our method can be extended to synthesize one modality based on another by cross-modal sampling guidance. We obtain the new state-of-the-art results with significant quality and efficiency gains. In particular, our method achieves a comprehensive improvement on all evaluation metrics and a faster training and sampling speed on Landscape and AIST++ datasets. </p>
     
     <p style="text-align:center;height:50px;padding: 20px 250px 0px 250px;"> Videos presented on this page are encoded according to H.264 format, which can be displayed through Google Chrome. </p>
     
     <!-- AIST++ 256x -->
-    <p style="text-align:center;font-size:24px;"> <strong>AIST++ 256x256</strong> </p>
-    <p style="text-align:center;font-size:20px;"> <strong>Sounding Video Generation</strong> </p>
+    <p style="text-align:center;background-color:#E7E6E6;font-size:36px;"> <strong>Sounding Video Generation on AIST++ 256x256</strong> </p>
+    
+    <p style="text-align:center;font-size:30px;"> <strong>MM-Diffusion</strong> </p>
+    <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion/dpm_solver_samples_0_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion/dpm_solver_samples_100_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion/dpm_solver_samples_1000_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion/dpm_solver_samples_1001_0_0.mp4" type="video/mp4">
+    </video>
+
+    <p style="text-align:center;font-size:30px;"> <strong>MM-Diffusion + SR</strong> </p>
+    <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion_sr/dpm_solver_samples_38_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion_sr/dpm_solver_samples_378_0_1.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion_sr/dpm_solver_samples_387_0_1.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion_sr/dpm_solver_samples_391_0_1.mp4" type="video/mp4">
+    </video>
+    <!-- row#2 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion_sr/dpm_solver_samples_392_0_1.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion_sr/dpm_solver_samples_394_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion_sr/dpm_solver_samples_1007_0_1.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion_sr/dpm_solver_samples_1008_0_1.mp4" type="video/mp4">
+    </video>
+    
+    <p style="text-align:center;font-size:30px;"> <strong>MM-LDM</strong> </p>
     <!-- row#1 -->
     <video width="256" height="256" style="padding-left:300px;" controls>
       <source src="materies_for_mmldm/aist_svg/b000000-vgJS_sBM_c01_d01_mJS0_ch04-s171.mp4" type="video/mp4">
@@ -55,9 +99,56 @@
       <source src="materies_for_mmldm/aist_svg/b000207-vgKR_sBM_c01_d30_mKR2_ch01-s111.mp4" type="video/mp4">
     </video>
 
+
+
+    
         <!-- Landscape 256x -->
-    <p style="text-align:center;font-size:24px;"> <strong>Landscape 256x256</strong> </p>
-    <p style="text-align:center;font-size:20px;"> <strong>Sounding Video Generation</strong> </p>
+    <p style="text-align:center;background-color:#E7E6E6;font-size:36px;"> <strong>Sounding Video Generation on Landscape 256x256</strong> </p>
+    <p style="text-align:center;font-size:30px;"> <strong>MM-Diffusion</strong> </p>
+    <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion/ddpm_samples_1_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion/ddpm_samples_1_0_1.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion/ddpm_samples_1_0_2.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion/ddpm_samples_1_0_3.mp4" type="video/mp4">
+    </video>
+
+    
+    <p style="text-align:center;font-size:30px;"> <strong>MM-Diffusion + SR</strong> </p>
+    <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion_sr/dpm_solver_samples_102_0_1.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion_sr/dpm_solver_samples_1006_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion_sr/dpm_solver_samples_1007_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion_sr/dpm_solver_samples_1012_0_1.mp4" type="video/mp4">
+    </video>
+    <!-- row#2 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion_sr/dpm_solver_samples_1014_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion_sr/dpm_solver_samples_1016_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion_sr/dpm_solver_samples_1017_0_1.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion_sr/dpm_solver_samples_1020_0_1.mp4" type="video/mp4">
+    </video>
+
+    <p style="text-align:center;font-size:30px;"> <strong>MM-LDM</strong> </p>
     <!-- row#1 -->
     <video width="256" height="256" style="padding-left:300px;" controls>
       <source src="materies_for_mmldm/landscape_svg/b000000-vgPZmntf3YO8%232055%232065-s1368.mp4" type="video/mp4">
@@ -110,6 +201,38 @@
     <video width="256" height="256" style="padding-left:50px;" controls>
       <source src="materies_for_mmldm/landscape_svg/b002706-v3aezPSwUf4s%233540%233550-s1368.mp4" type="video/mp4">
     </video>
+
+    <!-- Conditional Generation -->
+    <p style="text-align:center;background-color:#E7E6E6;font-size:36px;"> <strong>Conditional Generation</strong> </p>
+    <p style="text-align:center;font-size:30px;"> <strong>Video-to-audio Generation on AIST++</strong> </p>
+    <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/aist_v2a/.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_v2a/.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_v2a/.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_v2a/.mp4" type="video/mp4">
+    </video>
+    <p style="text-align:center;font-size:30px;"> <strong>Audio-to-video Generation on Landscape</strong> </p>
+    <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/landscape_a2v/.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_a2v/.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_a2v/.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_a2v/.mp4" type="video/mp4">
+    </video>
+
     
   </body>
 </html>
