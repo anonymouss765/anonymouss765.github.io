@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title> GLOBER++: GLOBal Video Features as Guiding Beacon for CohERent Video Generation </title>
+  </head>
+  <body>
+    <h1 style="font-size:50px;text-align:center;height:150px;padding:80px 0px 0px 0px;text-shadow: 1px 1px 0.4px black;"> GLOBER++: GLOBal Video Features as Guiding Beacon for CohERent Video Generation </h1>
+    
+    <p style="text-align:justify;weight:600px;height:200px;background-color:#E7E6E6;padding: 20px 250px 0px 250px;"> <strong>Abstract:</strong> Video generation demands synthesizing videos with both global coherence and local realism. Current methods employ video auto-encoders to alleviate the computational burden, along with autoregression or interpolation strategies for generating multi-frame videos, yet they face challenges in maintaining information fidelity and video consistency. To address these issues, we propose GLOBER++, which employs a concurrent generation strategy and transforms the conventional video decoding process from deterministic to generative. The concurrent generation strategy separates the generation of general video content from the synthesis of frame details. It enhances video coherence by utilizing a global video feature as a guiding beacon for multi-frame video generation, and facilitates flexible synthesis of video frames by modeling continuous time and permitting concurrent synthesis of multiple video frames. Generative video decoding allows lost information caused by video encoding to be supplemented through generation, thus enabling a high compression rate. Moreover, we devise three mechanisms to enhance video consistency, which align frame-wise features, reduce generation stochasticity, and keep correlations between neighbor frames, respectively. Extensive experiments demonstrate the superiority of GLOBER++ over existing methods in terms of efficiency and effectiveness, achieving significant improvements across four challenging benchmarks. </p>
+    
+    <p style="text-align:center;height:50px;padding: 20px 250px 0px 250px;"> Videos presented on this page are encoded according to H.264 format, which can be displayed through Google Chrome. </p>
+    
+    <p style="text-align:center;font-size:24px;"> <strong>Video Samples on SkyTimelapse 256x256</strong> </p>
+    <video width="1024" height="1024" style="padding-left:500px;" controls>
+      <source src="materies_for_lc_glober/sky.mp4" type="video/mp4">
+    </video>
+
+    <p style="text-align:center;font-size:24px;"> <strong>Video Samples on TaiChi-HD 256x256</strong> </p>
+    <video width="1024" height="1024" style="padding-left:500px;" controls>
+      <source src="materies_for_lc_glober/taichi.mp4" type="video/mp4">
+    </video>
+
+    <p style="text-align:center;font-size:24px;"> <strong>Video Samples on UCF-101 256x256</strong> </p>
+    <video width="1024" height="1024" style="padding-left:500px;" controls>
+      <source src="materies_for_lc_glober/ucf.mp4" type="video/mp4">
+    </video>
+    
+  </body>
+</html>
