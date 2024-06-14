@@ -11,6 +11,22 @@
     <p style="text-align:justify;weight:600px;height:200px;background-color:#E7E6E6;padding: 20px 250px 0px 250px;"> <strong>Abstract:</strong> Sounding Video Generation (SVG) is a challenging multi-modal generation task since it requires synthesizing realistic high-dimensional video and audio signals with limited computational resources, and bridging the gap between data representation and conveyed messages to obtain content consistency. In this paper, we introduce a novel multi-modal latent diffusion model (MM-LDM) to solve this task. We first unify the representation of audio and video signals by converting them into a single or a couple of images. Then, we introduce a hierarchical multi-modal autoencoder that constructs a low-level perceptual latent space for each modality and a shared high-level semantic feature space. The former space is perceptually equivalent to the raw signal space of each modality but drastically reduces the computational complexity. The latter space is derived from the perceptual spaces and provides more insightful cross-modal guidance to bridge the information gap between modalities. In addition, our method can be extended to synthesize one modality based on another by cross-modal sampling guidance. We obtain the new state-of-the-art results with significant quality and efficiency gains. In particular, our method achieves a comprehensive improvement on all evaluation metrics and a faster training and sampling speed on Landscape and AIST++ datasets. </p>
     
     <p style="text-align:center;height:50px;padding: 20px 250px 0px 250px;"> Videos presented on this page are encoded according to H.264 format, which can be displayed through Google Chrome. </p>
+
+    
+    <p style="text-align:center;background-color:#E7E6E6;font-size:36px; color:red;"> <strong>New Samples: Longer Sounding Videos </strong> </p>
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/aist_long_1m/b000005-vgLH_sBM_c01_d16_mLH1_ch09-s342.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_long_1m/b000007-vgBR_sBM_c01_d06_mBR4_ch06-s342.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_long_1m/b000106-vgJS_sBM_c01_d02_mJS4_ch04-s684.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_long_1m/b000200-vgKR_sBM_c01_d28_mKR1_ch04-s513.mp4" type="video/mp4">
+    </video>
+
     
     <!-- AIST++ 256x -->
     <p style="text-align:center;background-color:#E7E6E6;font-size:36px;"> <strong>Sounding Video Generation on AIST++ 256x256</strong> </p>
