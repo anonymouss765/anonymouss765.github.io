@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>MM-LDM: Multi-Modal Latent Diffusion Model for Sounding Video Generation</title>
+  </head>
+  <body>
+    <h1 style="font-size:50px;text-align:center;height:150px;padding:80px 0px 0px 0px;text-shadow: 1px 1px 0.4px black;"> MM-LDM: Multi-Modal Latent Diffusion Model for Sounding Video Generation </h1>
+    
+    <p style="text-align:justify;weight:600px;height:200px;background-color:#E7E6E6;padding: 20px 250px 0px 250px;"> <strong>Abstract:</strong> Sounding Video Generation (SVG) is a challenging multi-modal generation task since it requires synthesizing realistic high-dimensional video and audio signals with limited computational resources, and bridging the gap between data representation and conveyed messages to obtain content consistency. In this paper, we introduce a novel multi-modal latent diffusion model (MM-LDM) to solve this task. We first unify the representation of audio and video signals by converting them into a single or a couple of images. Then, we introduce a hierarchical multi-modal autoencoder that constructs a low-level perceptual latent space for each modality and a shared high-level semantic feature space. The former space is perceptually equivalent to the raw signal space of each modality but drastically reduces the computational complexity. The latter space is derived from the perceptual spaces and provides more insightful cross-modal guidance to bridge the information gap between modalities. In addition, our method can be extended to synthesize one modality based on another by cross-modal sampling guidance. We obtain the new state-of-the-art results with significant quality and efficiency gains. In particular, our method achieves a comprehensive improvement on all evaluation metrics and a faster training and sampling speed on Landscape and AIST++ datasets. </p>
+    
+    <p style="text-align:center;height:50px;padding: 20px 250px 0px 250px;"> Videos presented on this page are encoded according to H.264 format, which can be displayed through Google Chrome. </p>
+
+    
+    <p style="text-align:center;background-color:#E7E6E6;font-size:36px; color:red;"> <strong>Longer Sounding Videos (1 minute, 608 frames) </strong> </p>
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/aist_long_1m/b000005-vgLH_sBM_c01_d16_mLH1_ch09-s342.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_long_1m/b000007-vgBR_sBM_c01_d06_mBR4_ch06-s342.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_long_1m/b000106-vgJS_sBM_c01_d02_mJS4_ch04-s684.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_long_1m/b000200-vgKR_sBM_c01_d28_mKR1_ch04-s513.mp4" type="video/mp4">
+    </video>
+
+    <!-- Conditional Generation -->
+    <p style="text-align:center;background-color:#E7E6E6;font-size:36px; color:red;"> <strong>Zero-shot Conditional Generation</strong> </p>
+    <p style="text-align:center;font-size:30px;"> <strong>Video-to-audio Generation on AIST++</strong> </p>
+    <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/aist_v2a_zs/b000003-vgJB_sBM_c01_d09_mJB3_ch10-s111.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_v2a_zs/b000003-vgJB_sBM_c01_d09_mJB3_ch10-s1110.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_v2a_zs/b000003-vgJB_sBM_c01_d09_mJB3_ch10-s233.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_v2a_zs/b000003-vgJB_sBM_c01_d09_mJB3_ch10-s3440.mp4" type="video/mp4">
+    </video>
+    
+    <p style="text-align:center;font-size:30px;"> <strong>Audio-to-video Generation on Landscape</strong> </p>
+    <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/landscape_a2v_zs/b000005-viXQ4AyyJSEk#21774#21784-s111.mp4" type="video/mp4">  
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_a2v_zs/b000005-viXQ4AyyJSEk#21774#21784-s233000.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_a2v_zs/b000005-viXQ4AyyJSEk#21774#21784-s344000.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_a2v_zs/b000005-viXQ4AyyJSEk#21774#21784-s455.mp4" type="video/mp4">
+    </video>
+    
+    <!-- AIST++ 256x -->
+    <p style="text-align:center;background-color:#E7E6E6;font-size:36px;"> <strong>Sounding Video Generation on AIST++ 256x256</strong> </p>
+    
+    <p style="text-align:center;font-size:30px;"> <strong>MM-Diffusion</strong> </p>
+    <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion/dpm_solver_samples_0_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion/dpm_solver_samples_100_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion/dpm_solver_samples_1000_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion/dpm_solver_samples_1001_0_0.mp4" type="video/mp4">
+    </video>
+
+    <p style="text-align:center;font-size:30px;"> <strong>MM-Diffusion + SR</strong> </p>
+    <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion_sr/dpm_solver_samples_38_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion_sr/dpm_solver_samples_378_0_1.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion_sr/dpm_solver_samples_387_0_1.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion_sr/dpm_solver_samples_391_0_1.mp4" type="video/mp4">
+    </video>
+    <!-- row#2 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion_sr/dpm_solver_samples_392_0_1.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion_sr/dpm_solver_samples_394_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion_sr/dpm_solver_samples_1007_0_1.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg_mmdiffusion_sr/dpm_solver_samples_1008_0_1.mp4" type="video/mp4">
+    </video>
+    
+    <p style="text-align:center;font-size:30px;"> <strong>MM-LDM</strong> </p>
+    <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/aist_svg/b000000-vgJS_sBM_c01_d01_mJS0_ch04-s171.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg/b000001-vgWA_sFM_c01_d25_mWA5_ch07-s666.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg/b000004-vgMH_sBM_c01_d22_mMH1_ch06-s777.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg/b000102-vgBR_sFM_c01_d06_mBR3_ch17-s222.mp4" type="video/mp4">
+    </video>
+        <!-- row#2 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/aist_svg/b000102-vgPO_sBM_c01_d10_mPO3_ch04-s1197.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg/b000106-vgMH_sFM_c01_d23_mMH2_ch10-s888.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg/b000202-vgHO_sFM_c01_d21_mHO2_ch17-s333.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg/b000203-vgLO_sBM_c01_d13_mLO1_ch08-s888.mp4" type="video/mp4">
+    </video>
+        <!-- row#3 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/aist_svg/b000206-vgJS_sFM_c01_d03_mJS5_ch13-s1197.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg/b000206-vgKR_sFM_c01_d29_mKR3_ch11-s777.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg/b000207-vgJB_sBM_c01_d08_mJB0_ch06-s1197.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_svg/b000207-vgKR_sBM_c01_d30_mKR2_ch01-s111.mp4" type="video/mp4">
+    </video>
+
+
+
+    
+        <!-- Landscape 256x -->
+    <p style="text-align:center;background-color:#E7E6E6;font-size:36px;"> <strong>Sounding Video Generation on Landscape 256x256</strong> </p>
+    <p style="text-align:center;font-size:30px;"> <strong>MM-Diffusion</strong> </p>
+    <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion/ddpm_samples_1_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion/ddpm_samples_1_0_1.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion/ddpm_samples_1_0_2.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion/ddpm_samples_1_0_3.mp4" type="video/mp4">
+    </video>
+
+    
+    <p style="text-align:center;font-size:30px;"> <strong>MM-Diffusion + SR</strong> </p>
+    <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion_sr/dpm_solver_samples_102_0_1.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion_sr/dpm_solver_samples_1006_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion_sr/dpm_solver_samples_1007_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion_sr/dpm_solver_samples_1012_0_1.mp4" type="video/mp4">
+    </video>
+    <!-- row#2 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion_sr/dpm_solver_samples_1014_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion_sr/dpm_solver_samples_1016_0_0.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion_sr/dpm_solver_samples_1017_0_1.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg_mmdiffusion_sr/dpm_solver_samples_1020_0_1.mp4" type="video/mp4">
+    </video>
+
+    <p style="text-align:center;font-size:30px;"> <strong>MM-LDM</strong> </p>
+    <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/landscape_svg/b000000-vgPZmntf3YO8%232055%232065-s1368.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg/b000002-vleW_ZjMhCDk%2319080%2319090-s1197.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg/b000007-vLQOt1PccESY%23101%23111-s1026.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg/b000101-vX2R_y4GGsqo%2383%2393-s1368.mp4" type="video/mp4">
+    </video>
+        <!-- row#2 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/landscape_svg/b000102-vKjp9RDm_2qc%236908%236918-s1026.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg/b000102-vLRgGmH-nCBo%2355%2365-s684.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg/b000102-vxvxr2AaH9Eg%23238%23248-s1368.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg/b000400-vWAxIJjlUnTo%232501%232511-s342.mp4" type="video/mp4">
+    </video>
+        <!-- row#3 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/landscape_svg/b000503-v2_gH_XfgMKg%23114%23124-s171.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg/b001305-v8NEIcg-vw6U%2331937%2331947-s171.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg/b001500-vcfcgFEfZwVs%2324980%2324990-s342.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg/b001700-vJM8GuKJtlNo%234929%234939-s1197.mp4" type="video/mp4">
+    </video>
+        <!-- row#4 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/landscape_svg/b002401-vAx1Hxwi303U%23211%23221-s1368.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg/b002600-v9qm5kInqZlc%23334%23344-s342.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg/b002603-vE6JO0WfnFQ0%23524%23534-s684.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_svg/b002706-v3aezPSwUf4s%233540%233550-s1368.mp4" type="video/mp4">
+    </video>
+
+    <!-- Conditional Generation -->
+    <p style="text-align:center;background-color:#E7E6E6;font-size:36px;"> <strong>Conditional Generation</strong> </p>
+    <p style="text-align:center;font-size:30px;"> <strong>Video-to-audio Generation on AIST++</strong> </p>
+    <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/aist_v2a/b000000-vgMH_sBM_c01_d23_mMH1_ch03-s111.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_v2a/b000000-vgMH_sBM_c01_d23_mMH1_ch03-s233.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_v2a/b000000-vgMH_sBM_c01_d23_mMH1_ch03-s455.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_v2a/b000000-vgMH_sBM_c01_d23_mMH1_ch03-s4550.mp4" type="video/mp4">
+    </video>
+    <!-- row#2 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/aist_v2a/b000002-vgPO_sBM_c01_d10_mPO3_ch08-s111.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_v2a/b000002-vgPO_sBM_c01_d10_mPO3_ch08-s233.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_v2a/b000002-vgPO_sBM_c01_d10_mPO3_ch08-s344.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_v2a/b000002-vgPO_sBM_c01_d10_mPO3_ch08-s2330.mp4" type="video/mp4">
+    </video>
+    
+    <p style="text-align:center;font-size:30px;"> <strong>Audio-to-video Generation on Landscape</strong> </p>
+    <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/landscape_a2v/b000001-vICh2ImrOfT8%235307%235317-s455.mp4" type="video/mp4">  
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_a2v/b000001-vICh2ImrOfT8%235307%235317-s4550.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_a2v/b000001-vICh2ImrOfT8%235307%235317-s45500.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_a2v/b000001-vICh2ImrOfT8%235307%235317-s111000.mp4" type="video/mp4">
+    </video>
+    <!-- row#2 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/landscape_a2v/b000006-vpvyGmfVzYeY%231085%231095-s233.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_a2v/b000006-vpvyGmfVzYeY%231085%231095-s344.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_a2v/b000006-vpvyGmfVzYeY%231085%231095-s34400.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/landscape_a2v/b000006-vpvyGmfVzYeY%231085%231095-s455000.mp4" type="video/mp4">
+    </video>
+    
+  <p style="text-align:center;background-color:#E7E6E6;font-size:36px;"> <strong>Long Sounding Video Generation</strong> </p>
+  <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/aist_long/b000102-vgLH_sBM_c01_d16_mLH3_ch07-s855.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_long/b000202-vgKR_sBM_c01_d29_mKR0_ch03-s342.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_long/b000301-vgPO_sBM_c01_d12_mPO3_ch04-s1197.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_long/b000401-vgKR_sBM_c01_d29_mKR5_ch09-s855.mp4" type="video/mp4">
+    </video>
+    
+  <p style="text-align:center;background-color:#E7E6E6;font-size:36px;"> <strong>Video Continuation</strong> </p>
+  <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/aist_vc/b000000-vgPO_sFM_c01_d11_mPO4_ch12-s1026.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_vc/b000001-vgJB_sBM_c01_d07_mJB3_ch04-s171.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_vc/b000007-vgLO_sBM_c01_d14_mLO0_ch05-s513.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_vc/b000101-vgMH_sBM_c01_d23_mMH5_ch03-s1368.mp4" type="video/mp4">
+    </video>
+
+    <p style="text-align:center;background-color:#E7E6E6;font-size:36px;"> <strong>Audio Continuation</strong> </p>
+  <!-- row#1 -->
+    <video width="256" height="256" style="padding-left:300px;" controls>
+      <source src="materies_for_mmldm/aist_ac/b000001-vgPO_sFM_c01_d11_mPO0_ch08-s684.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_ac/b000101-vgKR_sBM_c01_d29_mKR4_ch08-s684.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_ac/b000104-vgLH_sBM_c01_d16_mLH3_ch09-s1197.mp4" type="video/mp4">
+    </video>
+    <video width="256" height="256" style="padding-left:50px;" controls>
+      <source src="materies_for_mmldm/aist_ac/b000107-vgLH_sBM_c01_d18_mLH3_ch03-s1026.mp4" type="video/mp4">
+    </video>
+    
+  </body>
+</html>
